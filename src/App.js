@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
+var time = null;
+
 function App() {
 
   const [seconds, setSeconds] = useState(0)
@@ -14,8 +16,6 @@ function App() {
     setHour(0);
     setStart(false)
   }
-
-  var time = null;
 
   useEffect(() => {
     if (start) {
