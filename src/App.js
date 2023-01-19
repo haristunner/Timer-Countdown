@@ -56,6 +56,8 @@ function App() {
       }
     }, 1000);
     setStart(true)
+
+    return () => clearInterval(time)
   }
 
   return (

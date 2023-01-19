@@ -8,20 +8,20 @@
 }
 
 body {
-  background-image: url("./img.jpg");
+  background-image: url("./img1.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .App {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
 }
 
 .container {
-  margin-right: 25px;
+  margin-left: 35px;
   padding: 70px 60px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -45,7 +45,7 @@ button {
   padding: 7px 14px;
   border: none;
   cursor: pointer;
-  background-color: rgb(233, 99, 10);
+  background-color: rgba(10, 233, 29, 0.548);
   border-radius: 5px;
   font-size: 1.2rem;
 }
