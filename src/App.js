@@ -6,39 +6,43 @@ function App() {
   const [seconds, setSeconds] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [hour, setHour] = useState(0)
+  const [start, setStart] = useState(false)
 
   const restart = () => {
     setSeconds(0);
     setMinutes(0);
     setHour(0);
+    setStart(false)
   }
 
   var time = null;
 
   useEffect(() => {
-    time = setInterval(() => {
-      setSeconds(seconds + 1);
-      if (seconds === 59) {
-        setMinutes(minutes + 1)
-        setSeconds(0)
-      }
-      if (minutes === 59) {
-        setHour(hour + 1);
-        setMinutes(0);
-        setSeconds(0);
-      }
-    }, 1000);
-
+    if (start) {
+      time = setInterval(() => {
+        setSeconds(seconds + 1);
+        if (seconds === 59) {
+          setMinutes(minutes + 1)
+          setSeconds(0)
+        }
+        if (minutes === 59) {
+          setHour(hour + 1);
+          setMinutes(0);
+          setSeconds(0);
+        }
+      }, 1000);
+    }
     //state updation for clean up function
 
     return () => clearInterval(time)
+
   })
 
   const stop = () => {
     clearInterval(time)
   }
 
-  const start = () => {
+  const starts = () => {
     time = setInterval(() => {
       setSeconds(seconds + 1);
       if (seconds === 59) {
@@ -51,6 +55,7 @@ function App() {
         setSeconds(0);
       }
     }, 1000);
+    setStart(true)
   }
 
   return (
@@ -64,7 +69,7 @@ function App() {
         <div className="buttons">
           <button onClick={restart}>Restart</button>
           <button onClick={stop}>Stop</button>
-          <button onClick={start}>Start</button>
+          <button onClick={starts}>Start</button>
         </div>
       </div>
     </div>
