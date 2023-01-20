@@ -78,4 +78,8 @@ button:hover {
     padding: 4px 8px;
     font-size: 0.8rem;
   }
+
+  button:hover {
+    background-color: rgba(10, 233, 29, 0.548);
+  }
 }
