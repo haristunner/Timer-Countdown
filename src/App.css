@@ -50,14 +50,24 @@ button {
   font-size: 1.2rem;
 }
 
+button:hover {
+  background-color: rgb(88, 233, 100);
+  transition: 0.3s;
+}
+
 @media screen and (max-width: 767px) {
   body {
     background-position: center;
     background-size: cover;
   }
 
+  .App {
+    justify-content: center;
+  }
+
   .container {
     padding: 35px 30px;
+    margin-left: 0px;
   }
 
   p {

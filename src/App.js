@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
-var time = null;
+var timer = null;
 
 function App() {
 
@@ -9,17 +9,19 @@ function App() {
   const [minutes, setMinutes] = useState(0)
   const [hour, setHour] = useState(0)
   const [start, setStart] = useState(false)
+  const [disable, setDisable] = useState(false)
 
   const restart = () => {
     setSeconds(0);
     setMinutes(0);
     setHour(0);
     setStart(false)
+    setDisable(false)
   }
 
   useEffect(() => {
     if (start) {
-      time = setInterval(() => {
+      timer = setInterval(() => {
         setSeconds(seconds + 1);
         if (seconds === 59) {
           setMinutes(minutes + 1)
@@ -32,18 +34,23 @@ function App() {
         }
       }, 1000);
     }
+
     //state updation for clean up function
 
-    return () => clearInterval(time)
+    return () => clearInterval(timer)
 
   })
 
   const stop = () => {
-    clearInterval(time)
+    setDisable(false)
+    setSeconds(seconds);
+    setMinutes(minutes);
+    setHour(hour);
+    setStart(false)
   }
 
   const starts = () => {
-    time = setInterval(() => {
+    timer = setInterval(() => {
       setSeconds(seconds + 1);
       if (seconds === 59) {
         setMinutes(minutes + 1)
@@ -56,8 +63,7 @@ function App() {
       }
     }, 1000);
     setStart(true)
-
-    return () => clearInterval(time)
+    setDisable(true)
   }
 
   return (
@@ -69,9 +75,9 @@ function App() {
           {seconds < 10 ? "0" + seconds : seconds}
         </p>
         <div className="buttons">
-          <button onClick={restart}>Restart</button>
+          <button onClick={restart}>Reset</button>
           <button onClick={stop}>Stop</button>
-          <button onClick={starts}>Start</button>
+          <button onClick={starts} disabled={disable}>Start</button>
         </div>
       </div>
     </div>
